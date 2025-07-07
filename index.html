@@ -315,6 +315,170 @@
             box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
         }
 
+        /* Modern Liquid Glass Footer */
+        .footer {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 50%);
+            animation: footerGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes footerGlow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #1A365D;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(45deg, #4299E1, #63B3ED);
+            border-radius: 2px;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            color: #2C5282;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 8px;
+            padding-left: 10px;
+        }
+
+        .footer-section ul li:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2C5282;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            margin: 40px 0 30px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright {
+            color: #2C5282;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .developer-credit {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 8px 20px;
+            color: #2C5282;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .developer-credit:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .developer-credit .heart {
+            color: #E53E3E;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
         /* Modal */
         .modal {
             display: none;
@@ -432,6 +596,16 @@
             .contact-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
         }
 
@@ -562,6 +736,63 @@
         </div>
     </section>
 
+    <!-- Modern Liquid Glass Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>DollyVic Enterprise</h3>
+                    <p>Your trusted partner for premium quality products. We're committed to delivering excellence in every purchase.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="https://wa.me/233551022714" class="social-link">💬</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})">Home</li>
+                        <li onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">Products</li>
+                        <li onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact</li>
+                        <li onclick="showPurchaseForm('General Inquiry')">Order Now</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📱 +233 55 102 2714</p>
+                    <p>📧 nanakwamedickson@outlook.com</p>
+                    <p>📍 Accra, Ghana</p>
+                    <p>🕐 Mon-Sat: 8AM-8PM</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Promise</h3>
+                    <ul>
+                        <li>✅ Premium Quality</li>
+                        <li>🚚 Fast Delivery</li>
+                        <li>💯 Customer Satisfaction</li>
+                        <li>🔒 Secure Payment</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <span>© 2025 DollyVic Enterprise. All rights reserved.</span>
+                </div>
+                <div class="developer-credit">
+                    Built with <span class="heart">♥</span> by Nana Kwame Dickson
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Purchase Form Modal -->
     <div id="purchaseModal" class="modal">
         <div class="modal-content">
@@ -575,175 +806,3 @@
                 
                 <div class="form-group">
                     <label for="customerName">Full Name:</label>
-                    <input type="text" id="customerName" name="customerName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="address">Delivery Address:</label>
-                    <textarea id="address" name="address" rows="3" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Additional Notes:</label>
-                    <textarea id="message" name="message" rows="3" placeholder="Any special requests or questions..."></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Send Order Request</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Product Details Modal -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeProductModal()">&times;</span>
-            <h2 id="modalProductName" style="color: #1A365D; margin-bottom: 20px;"></h2>
-            <div id="modalProductPrice" style="font-size: 1.5em; color: #4299E1; font-weight: 700; margin-bottom: 20px;"></div>
-            <div id="modalProductDescription" style="color: #2C5282; font-size: 1.1em; line-height: 1.6; margin-bottom: 30px;"></div>
-            <button class="cta-button" onclick="closeProductModal(); showPurchaseForm(document.getElementById('modalProductName').textContent)">
-                Order Now
-            </button>
-        </div>
-    </div>
-
-    <script>
-        let currentSlide = 0;
-        const carousel = document.getElementById('productCarousel');
-        const totalSlides = document.querySelectorAll('.product-card').length;
-        const slidesToShow = window.innerWidth > 768 ? 3 : 1;
-
-        function nextSlide() {
-            if (currentSlide < totalSlides - slidesToShow) {
-                currentSlide++;
-                updateCarousel();
-            }
-        }
-
-        function previousSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateCarousel();
-            }
-        }
-
-        function updateCarousel() {
-            const slideWidth = 320; // Card width + margin
-            carousel.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-        }
-
-        function scrollToProducts() {
-            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showPurchaseForm(productName) {
-            document.getElementById('productName').value = productName;
-            document.getElementById('purchaseModal').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
-        }
-
-        function showProductModal(name, price, description) {
-            document.getElementById('modalProductName').textContent = name;
-            document.getElementById('modalProductPrice').textContent = price;
-            document.getElementById('modalProductDescription').textContent = description;
-            document.getElementById('productModal').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
-        }
-
-        function closeModal() {
-            document.getElementById('purchaseModal').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore background scroll
-        }
-
-        function closeProductModal() {
-            document.getElementById('productModal').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore background scroll
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const purchaseModal = document.getElementById('purchaseModal');
-            const productModal = document.getElementById('productModal');
-            if (event.target == purchaseModal) {
-                purchaseModal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Restore background scroll
-            }
-            if (event.target == productModal) {
-                productModal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Restore background scroll
-            }
-        }
-
-        // Handle form submission
-        document.getElementById('purchaseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const orderDetails = {
-                product: formData.get('productName'),
-                name: formData.get('customerName'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                address: formData.get('address'),
-                quantity: formData.get('quantity'),
-                message: formData.get('message')
-            };
-            
-            // Create email body
-            const emailBody = `
-New Order Request from DollyVic Enterprise Website
-
-Product: ${orderDetails.product}
-Customer Name: ${orderDetails.name}
-Email: ${orderDetails.email}
-Phone: ${orderDetails.phone}
-Delivery Address: ${orderDetails.address}
-Quantity: ${orderDetails.quantity}
-Additional Notes: ${orderDetails.message}
-
-Please contact the customer to confirm the order and arrange payment.
-            `;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:nanakwamedickson@outlook.com?subject=New Order Request - ${orderDetails.product}&body=${encodeURIComponent(emailBody)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Your order request has been prepared! Please send the email that just opened, or contact us via WhatsApp.');
-            
-            // Close modal and reset form
-            closeModal();
-            this.reset();
-        });
-
-        // Auto-advance carousel
-        setInterval(nextSlide, 5000);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
