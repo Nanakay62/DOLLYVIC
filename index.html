@@ -718,8 +718,117 @@
             <button class="carousel-btn" onclick="nextSlide()">Next →</button>
         </div>
     </section>
+    
+       <script>
+// Carousel logic
+const carousel = document.getElementById('productCarousel');
+const productCards = carousel.querySelectorAll('.product-card');
+let currentIndex = 0;
+const visibleCards = () => {
+    if (window.innerWidth < 600) return 1;
+    if (window.innerWidth < 900) return 2;
+    return 3;
+};
 
-    <!-- Contact Section -->
+function updateCarousel(center = true) {
+    const cardWidth = productCards[0].offsetWidth + 40; // card + margin
+    const offset = center ? (carousel.offsetWidth - cardWidth) / 2 : 0;
+    carousel.style.transform = `translateX(calc(${offset}px - ${currentIndex * cardWidth}px))`;
+}
+
+function previousSlide() {
+    currentIndex = Math.max(0, currentIndex - 1);
+    updateCarousel();
+}
+
+function nextSlide() {
+    const maxIndex = productCards.length - visibleCards();
+    currentIndex = Math.min(maxIndex, currentIndex + 1);
+    updateCarousel();
+}
+
+window.addEventListener('resize', () => {
+    const maxIndex = productCards.length - visibleCards();
+    if (currentIndex > maxIndex) currentIndex = maxIndex;
+    updateCarousel();
+});
+
+let startX = 0;
+let isDragging = false;
+let dx = 0;
+
+carousel.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    startX = e.touches[0].clientX;
+});
+
+carousel.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    dx = e.touches[0].clientX - startX;
+    carousel.style.transition = 'none';
+    const cardWidth = productCards[0].offsetWidth + 40;
+    const offset = (carousel.offsetWidth - cardWidth) / 2;
+    carousel.style.transform = `translateX(calc(${offset}px - ${currentIndex * cardWidth}px + ${dx}px))`;
+});
+
+carousel.addEventListener('touchend', () => {
+    isDragging = false;
+    if (dx > 50) previousSlide();
+    else if (dx < -50) nextSlide();
+    else updateCarousel();
+    dx = 0;
+});
+
+// Mouse dragging support
+carousel.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.clientX;
+    carousel.style.cursor = 'grabbing';
+});
+
+carousel.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    dx = e.clientX - startX;
+    carousel.style.transition = 'none';
+    const cardWidth = productCards[0].offsetWidth + 40;
+    const offset = (carousel.offsetWidth - cardWidth) / 2;
+    carousel.style.transform = `translateX(calc(${offset}px - ${currentIndex * cardWidth}px + ${dx}px))`;
+});
+
+carousel.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    carousel.style.cursor = '';
+    if (dx > 50) previousSlide();
+    else if (dx < -50) nextSlide();
+    else updateCarousel();
+    dx = 0;
+});
+
+carousel.addEventListener('mouseleave', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    carousel.style.cursor = '';
+    updateCarousel();
+});
+
+// Prevent click while dragging
+carousel.addEventListener('click', (e) => {
+    if (isDragging) e.preventDefault();
+});
+
+// Auto slide
+setInterval(() => {
+    const maxIndex = productCards.length - visibleCards();
+    currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+    updateCarousel();
+}, 5000); // every 5 seconds
+
+// Initial call
+updateCarousel();
+</script>
+
+        <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2 class="section-title">Get in Touch</h2>
         <p style="color: #2C5282; font-size: 1.2em; margin-bottom: 30px;">
