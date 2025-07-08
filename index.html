@@ -824,6 +824,27 @@ setInterval(() => {
     updateCarousel();
 }, 5000); // every 5 seconds
 
+function scrollToProducts() {
+    document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+}
+
+function showPurchaseForm(productName) {
+    document.getElementById("productName").value = productName;
+    document.getElementById("purchaseModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("purchaseModal").style.display = "none";
+}
+
+// Optional: Close modal if clicked outside
+window.onclick = function(event) {
+    const modal = document.getElementById("purchaseModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 // Initial call
 updateCarousel();
 </script>
@@ -839,9 +860,9 @@ updateCarousel();
             <a href="https://wa.me/233551022714" target="_blank" class="whatsapp-btn">
                 💬 WhatsApp Us
             </a>
-            <button class="cta-button" onclick="showPurchaseForm('General Inquiry')">
-                📧 Send Email
-            </button>
+            <a class="cta-button" href="mailto:nanakwamedickson@outlook.com?subject=Product Inquiry&body=Hi, I'm interested in your products." style="text-decoration:none;">
+    📧 Send Email
+</a>
         </div>
     </section>
 
