@@ -640,6 +640,25 @@
         }
     </style>
 </head>
+<!-- WhatsApp Order Modal -->
+<div id="whatsappModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeWhatsAppModal()">&times;</span>
+    <h2 style="color: #1A365D; margin-bottom: 20px;">Place Order via WhatsApp</h2>
+    <form onsubmit="submitWhatsAppOrder(event)">
+      <div class="form-group">
+        <label for="waProduct">Product</label>
+        <input type="text" id="waProduct" readonly>
+      </div>
+      <div class="form-group">
+        <label for="waQuantity">Quantity</label>
+        <input type="number" id="waQuantity" min="1" required>
+      </div>
+      <button type="submit" class="submit-btn">📲 Send via WhatsApp</button>
+    </form>
+  </div>
+</div>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -675,8 +694,8 @@
                     <div class="product-description">Long-lasting fragrance with floral notes</div>
                     <button 
   class="buy-button" 
-  onclick="event.stopPropagation(); sendEmail(this)" 
-  data-product="Premium Body Spray"
+  onclick="event.stopPropagation(); openWhatsAppModal(this)" 
+  data-product="Organic Coconut Oil"
 >
   Buy Now
 </button>
@@ -690,10 +709,10 @@
                     <div class="product-name">Refreshing Body Splash</div>
                     <div class="product-price">Ghc18.99</div>
                     <div class="product-description">Invigorating citrus scent for all-day freshness</div>
-                   <button 
+     <button 
   class="buy-button" 
-  onclick="event.stopPropagation(); sendEmail(this)" 
-  data-product="Refreshing Body Splash"
+  onclick="event.stopPropagation(); openWhatsAppModal(this)" 
+  data-product="Organic Coconut Oil"
 >
   Buy Now
 </button>
@@ -709,8 +728,8 @@
                     <div class="product-description">High-quality aromatic rice, perfect for every meal</div>
                     <button 
   class="buy-button" 
-  onclick="event.stopPropagation(); sendEmail(this)" 
-  data-product="Premium Jasmine Rice"
+  onclick="event.stopPropagation(); openWhatsAppModal(this)" 
+  data-product="Organic Coconut Oil"
 >
   Buy Now
 </button>
@@ -724,9 +743,9 @@
                     <div class="product-name">Organic Coconut Oil</div>
                     <div class="product-price">Ghc22.99</div>
                     <div class="product-description">Pure, cold-pressed coconut oil for cooking and skincare</div>
-                    <button 
+                   <button 
   class="buy-button" 
-  onclick="event.stopPropagation(); sendEmail(this)" 
+  onclick="event.stopPropagation(); openWhatsAppModal(this)" 
   data-product="Organic Coconut Oil"
 >
   Buy Now
@@ -743,8 +762,8 @@
                     <div class="product-description">Moisturizing formula with shea butter and vitamin E</div>
                     <button 
   class="buy-button" 
-  onclick="event.stopPropagation(); sendEmail(this)" 
-  data-product="Luxury Hand Lotion"
+  onclick="event.stopPropagation(); openWhatsAppModal(this)" 
+  data-product="Organic Coconut Oil"
 >
   Buy Now
 </button>
@@ -760,8 +779,8 @@
                     <div class="product-description">Soothing blend of chamomile, lavender, and mint</div>
                     <button 
   class="buy-button" 
-  onclick="event.stopPropagation(); sendEmail(this)" 
-  data-product="Herbal Tea Blend"
+  onclick="event.stopPropagation(); openWhatsAppModal(this)" 
+  data-product="Organic Coconut Oil"
 >
   Buy Now
 </button>
@@ -912,6 +931,37 @@ function sendEmail(button) {
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
     window.location.href = mailtoLink;
 }
+
+function openWhatsAppModal(button) {
+    const product = button.getAttribute('data-product');
+    document.getElementById('waProduct').value = product;
+    document.getElementById('waQuantity').value = '';
+    document.getElementById('whatsappModal').style.display = 'block';
+}
+
+function closeWhatsAppModal() {
+    document.getElementById('whatsappModal').style.display = 'none';
+}
+
+function submitWhatsAppOrder(event) {
+    event.preventDefault();
+    const product = document.getElementById('waProduct').value;
+    const quantity = document.getElementById('waQuantity').value;
+    const phoneNumber = "233557622957";
+
+    const message = `Hi DollyVic,%0A%0AI’d like to order the product below:%0A%0AProduct: ${product}%0AQuantity: ${quantity}%0A%0APlease let me know how to proceed.`;
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
+    
+    window.open(whatsappLink, '_blank');
+    closeWhatsAppModal();
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('whatsappModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
 </script>
 
         <!-- Contact Section -->
